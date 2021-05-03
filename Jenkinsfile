@@ -30,6 +30,18 @@ pipeline {
     stage('Checkout') {
       steps{
         echo "------------>Checkout<------------"
+		checkout([
+            $class: 'GitSCM',
+            branches: [[name: '*/master']],
+            doGenerateSubmoduleConfigurations: false,
+            extensions: [],
+            gitTool: 'Default',
+            submoduleCfg: [],
+            userRemoteConfigs: [[
+                credentialsId: 'GitHub_aleRozo',
+                url:'https://github.com/aleRozo/PolizaMascotas'
+            ]]
+        ])
       }
     }
     
