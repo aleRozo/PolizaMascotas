@@ -25,13 +25,19 @@ public class ServicioCrearPoliza {
     }
 
     public Long ejecutar(Poliza poliza) {
+        validarExistenciaPrevia(poliza);
         calcularValor(poliza);
         aplicarDescuentosCumpleanos(poliza);
         establecerFechaTerminacion(poliza);
-        validarExistenciaPrevia(poliza);
         return this.repositorioPoliza.crear(poliza);
     }
 
+    private void validarExistenciaPrevia(Poliza poliza) {
+        boolean existe = this.repositorioPoliza.existe(poliza.getNombrePropietario(), poliza.getNombreMascota());
+        if(existe) {
+            throw new ExcepcionDuplicidad(LA_POLIZA_YA_EXISTE_EN_EL_SISTEMA);
+        }
+    }
 
     private void calcularValor(Poliza poliza) {
         double pesoMascota = poliza.getPesoMascota();
@@ -80,10 +86,5 @@ public class ServicioCrearPoliza {
         poliza.setFechaTerminacion(fechaTerminacion);
     }
 
-    private void validarExistenciaPrevia(Poliza poliza) {
-        boolean existe = this.repositorioPoliza.existe(poliza.getNombrePropietario(), poliza.getNombreMascota());
-        if(existe) {
-            throw new ExcepcionDuplicidad(LA_POLIZA_YA_EXISTE_EN_EL_SISTEMA);
-        }
-    }
+
 }

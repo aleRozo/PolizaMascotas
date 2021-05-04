@@ -17,6 +17,6 @@ public class ComandoPoliza {
     private String nombreMascota;
     private String tipoMascota;
     private String fechaNacimientoMascota;
-    private double pesoMascota;
+    private Double pesoMascota;
     private String alturaMascota;
 }

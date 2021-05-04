@@ -15,7 +15,7 @@ public class DtoPoliza {
     private String nombreMascota;
     private String tipoMascota;
     private String fechaNacimientoMascota;
-    private double pesoMascota;
+    private Double pesoMascota;
     private String alturaMascota;
     private BigDecimal valorPoliza;
     private LocalDateTime fechaInicio;

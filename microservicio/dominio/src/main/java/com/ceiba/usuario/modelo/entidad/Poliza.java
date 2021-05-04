@@ -21,7 +21,7 @@ public class Poliza {
     private static final String SE_DEBE_INGRESAR_LA_FECHA_DE_NACIMIENTO_DE_LA_MASCOTA = "Se debe ingresar la fecha de nacimiento de la mascota";
     private static final String SE_DEBE_INGRESAR_EL_PESO_DE_LA_MASCOTA = "Se debe ingresar el peso de la mascota";
     private static final String SE_DEBE_INGRESAR_SOLO_VALORES_NUMERICOS_EN_EL_TELEFONO_DEL_PROPIETARIO = "Se debe ingresar solo valores numericos en el telefono del propietario";
-    private static final String SE_DEBE_INGRESAR_LA_FECHA_DE_NACIMIENTO_EN_FORMATO_VALIDO = "Se debe ingresar la fecha de nacimiento en formato " + FORMATO_FECHA;
+    private static final String SE_DEBE_INGRESAR_LA_FECHA_DE_NACIMIENTO_EN_FORMATO_VALIDO = "Se debe ingresar la fecha de nacimiento en formato dd-mm-yyyy";
 
 
 
@@ -31,7 +31,7 @@ public class Poliza {
     private String nombreMascota;
     private String tipoMascota;
     private String fechaNacimientoMascota;
-    private double pesoMascota;
+    private Double pesoMascota;
     private String alturaMascota;
     @Setter private BigDecimal valorPoliza;
     private LocalDateTime fechaInicio;
@@ -43,7 +43,7 @@ public class Poliza {
             String nombreMascota,
             String tipoMascota,
             String fechaNacimientoMascota,
-            double pesoMascota,
+            Double pesoMascota,
             String alturaMascota) {
 
         validarCadenaObligatoria(nombrePropietario, SE_DEBE_INGRESAR_EL_NOMBRE_DEL_PROPIETARIO);
