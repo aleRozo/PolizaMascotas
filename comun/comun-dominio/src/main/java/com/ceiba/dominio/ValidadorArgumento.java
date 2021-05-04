@@ -1,7 +1,11 @@
 package com.ceiba.dominio;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -94,4 +98,21 @@ public class ValidadorArgumento {
             throw new ExcepcionValorInvalido(mensaje);
         }
     }
+
+    public static void validarCadenaObligatoria(String valor, String mensaje) {
+        validarObligatorio(valor,mensaje);
+        if (valor.trim().equals("")) {
+            throw new ExcepcionValorObligatorio(mensaje);
+        }
+    }
+
+    public static void validarFormatoFecha(String fecha, String formato, String mensaje) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(formato);
+        try {
+            LocalDate fechaFormatoEstandar = LocalDate.parse(fecha, dateTimeFormatter);
+        } catch (DateTimeParseException e) {
+            throw new ExcepcionValorInvalido(mensaje);
+        }
+    }
+
 }

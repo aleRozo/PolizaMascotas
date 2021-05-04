@@ -21,8 +21,8 @@ public class MapeoPoliza implements RowMapper<DtoPoliza>, MapperResult {
         String telefonoPropietario = resultSet.getString("telefono_propietario");
         String nombreMascota = resultSet.getString("nombre_mascota");
         String tipoMascota = resultSet.getString("tipo_mascota");
-        LocalDate fechaNacimientoMascota = extraerLocalDate(resultSet, "fecha_nacimiento_mascota");
-        String pesoMascota = resultSet.getString("peso_mascota");
+        String fechaNacimientoMascota = resultSet.getString("fecha_nacimiento_mascota");
+        double pesoMascota = resultSet.getDouble("peso_mascota");
         String alturaMascota = resultSet.getString("altura_mascota");
         BigDecimal valorPoliza = resultSet.getBigDecimal("valor_poliza");
         LocalDateTime fechaInicio = extraerLocalDateTime(resultSet, "fecha_inicio");
