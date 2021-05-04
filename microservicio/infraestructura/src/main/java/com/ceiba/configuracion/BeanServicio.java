@@ -2,10 +2,7 @@ package com.ceiba.configuracion;
 
 import com.ceiba.usuario.puerto.repositorio.RepositorioPoliza;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
-import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
-import com.ceiba.usuario.servicio.ServicioCrearPoliza;
-import com.ceiba.usuario.servicio.ServicioCrearUsuario;
-import com.ceiba.usuario.servicio.ServicioEliminarUsuario;
+import com.ceiba.usuario.servicio.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -30,5 +27,10 @@ public class BeanServicio {
     @Bean
     public ServicioCrearPoliza servicioCrearPoliza(RepositorioPoliza repositorioPoliza) {
         return new ServicioCrearPoliza(repositorioPoliza);
+    }
+
+    @Bean
+    public ServicioEliminarPoliza servicioEliminarPoliza(RepositorioPoliza repositorioPoliza) {
+        return new ServicioEliminarPoliza(repositorioPoliza);
     }
 }

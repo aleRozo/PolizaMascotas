@@ -15,6 +15,7 @@ import java.time.format.DateTimeParseException;
 
 public class ServicioCrearPoliza {
 
+    private static final String SE_DEBE_INGRESAR_UNA_FECHA_DE_NACIMIENTO_VALIDA_EN_EL_CALENDARIO = "Se debe ingresar una fecha de nacimiento valida en el calendario";
     private static final String LA_POLIZA_YA_EXISTE_EN_EL_SISTEMA = "La poliza ya existe en el sistema";
 
     private final RepositorioPoliza repositorioPoliza;
@@ -64,7 +65,7 @@ public class ServicioCrearPoliza {
         try {
             LocalDate.parse(fechaFormatoIso, dateTimeFormatter);
         } catch (DateTimeParseException e) {
-            throw new ExcepcionValorInvalido(Poliza.SE_DEBE_INGRESAR_UNA_FECHA_DE_NACIMIENTO_VALIDA_EN_EL_CALENDARIO);
+            throw new ExcepcionValorInvalido(SE_DEBE_INGRESAR_UNA_FECHA_DE_NACIMIENTO_VALIDA_EN_EL_CALENDARIO);
         }
     }
 

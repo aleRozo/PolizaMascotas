@@ -2,13 +2,11 @@ package com.ceiba.usuario.adaptador.dao;
 
 import com.ceiba.infraestructura.jdbc.MapperResult;
 import com.ceiba.usuario.modelo.dto.DtoPoliza;
-import com.ceiba.usuario.modelo.dto.DtoUsuario;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class MapeoPoliza implements RowMapper<DtoPoliza>, MapperResult {

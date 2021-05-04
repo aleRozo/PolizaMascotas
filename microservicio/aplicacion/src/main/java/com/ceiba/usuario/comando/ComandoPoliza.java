@@ -5,10 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -23,7 +19,4 @@ public class ComandoPoliza {
     private String fechaNacimientoMascota;
     private double pesoMascota;
     private String alturaMascota;
-//    private BigDecimal valorPoliza;
-//    private LocalDateTime fechaInicio;
-//    private LocalDateTime fechaTerminacion;
 }

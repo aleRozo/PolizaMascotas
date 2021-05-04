@@ -24,7 +24,6 @@ public class ConsultaControladorPoliza {
     @GetMapping
     @ApiOperation("Listar Polizas")
     public List<DtoPoliza> listar() {
-        System.out.println("-- controlador");
         return this.manejadorListarPolizas.ejecutar();
     }
 

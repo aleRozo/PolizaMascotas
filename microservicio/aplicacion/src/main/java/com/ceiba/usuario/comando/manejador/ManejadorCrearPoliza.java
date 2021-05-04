@@ -3,13 +3,9 @@ package com.ceiba.usuario.comando.manejador;
 import com.ceiba.ComandoRespuesta;
 import com.ceiba.manejador.ManejadorComandoRespuesta;
 import com.ceiba.usuario.comando.ComandoPoliza;
-import com.ceiba.usuario.comando.ComandoUsuario;
 import com.ceiba.usuario.comando.fabrica.FabricaPoliza;
-import com.ceiba.usuario.comando.fabrica.FabricaUsuario;
 import com.ceiba.usuario.modelo.entidad.Poliza;
-import com.ceiba.usuario.modelo.entidad.Usuario;
 import com.ceiba.usuario.servicio.ServicioCrearPoliza;
-import com.ceiba.usuario.servicio.ServicioCrearUsuario;
 import org.springframework.stereotype.Component;
 
 @Component

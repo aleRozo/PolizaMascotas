@@ -5,25 +5,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.concurrent.TimeUnit;
 
 import static com.ceiba.dominio.ValidadorArgumento.*;
 
 @Getter
 public class Poliza {
 
-//    private static final String SE_DEBE_INGRESAR_LA_FECHA_CREACION = "Se debe ingresar la fecha de creación";
-//    private static final String LA_CLAVE_DEBE_TENER_UNA_LONGITUD_MAYOR_O_IGUAL_A = "La clave debe tener una longitud mayor o igual a %s";
-//    private static final String SE_DEBE_INGRESAR_LA_CLAVE = "Se debe ingresar la clave";
-//    private static final String SE_DEBE_INGRESAR_EL_NOMBRE_DE_USUARIO = "Se debe ingresar el nombre de usuario";
-//
-//    private static final int LONGITUD_MINIMA_CLAVE = 4;
-
     public static final BigDecimal VALOR_UNITARIO = BigDecimal.valueOf(20000);
     public static final String FORMATO_FECHA = "dd-MM-yyyy";
-    public static final String SE_DEBE_INGRESAR_UNA_FECHA_DE_NACIMIENTO_VALIDA_EN_EL_CALENDARIO = "Se debe ingresar una fecha de nacimiento valida en el calendario";
     private static final String SE_DEBE_INGRESAR_EL_NOMBRE_DEL_PROPIETARIO = "Se debe ingresar el nombre del propietario";
     private static final String SE_DEBE_INGRESAR_EL_TELEFONO_DEL_PROPIETARIO = "Se debe ingresar el telefono del propietario";
     private static final String SE_DEBE_INGRESAR_EL_NOMBRE_DE_LA_MASCOTA = "Se debe ingresar el nombre de la mascota";
@@ -74,7 +64,6 @@ public class Poliza {
         this.pesoMascota = pesoMascota;
         this.alturaMascota = alturaMascota;
         this.fechaInicio = LocalDateTime.now();
-//        this.fechaInicio = LocalDateTime.of(2021,5, 8,3,20);
         this.valorPoliza = BigDecimal.ZERO;
     }
 
