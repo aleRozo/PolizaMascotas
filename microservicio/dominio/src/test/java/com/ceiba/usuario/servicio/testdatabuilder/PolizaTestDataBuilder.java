@@ -1,17 +1,11 @@
 package com.ceiba.usuario.servicio.testdatabuilder;
 
 import com.ceiba.usuario.modelo.entidad.Poliza;
-import com.ceiba.usuario.modelo.entidad.Usuario;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class PolizaTestDataBuilder {
-
-//    private Long id;
-//    private String nombreUsuario;
-//    private String clave;
-//    private LocalDateTime fecha;
 
     private Long id;
     private String nombrePropietario;
