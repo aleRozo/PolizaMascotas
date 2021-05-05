@@ -51,7 +51,7 @@ public class ServicioCrearPoliza {
     private void aplicarDescuentosCumpleanos(Poliza poliza) {
         validarFechaEnElCalendario(poliza);
         BigDecimal valorPoliza = poliza.getValorPoliza();
-        BigDecimal valorDescuento = BigDecimal.ZERO;
+        BigDecimal valorDescuento;
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(Poliza.FORMATO_FECHA);
         LocalDate fechaNacimientoMascota = LocalDate.parse(poliza.getFechaNacimientoMascota(), dateTimeFormatter);
         int diaDelMes = fechaNacimientoMascota.getDayOfMonth();
