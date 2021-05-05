@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 import static com.ceiba.dominio.ValidadorArgumento.*;
 
+@SuppressWarnings("java:S1068")
 @Getter
 public class Poliza {
 
@@ -54,7 +55,7 @@ public class Poliza {
         validarObligatorio(fechaNacimientoMascota, SE_DEBE_INGRESAR_LA_FECHA_DE_NACIMIENTO_DE_LA_MASCOTA);
         validarNumerico(telefonoPropietario, SE_DEBE_INGRESAR_SOLO_VALORES_NUMERICOS_EN_EL_TELEFONO_DEL_PROPIETARIO);
         validarFormatoFecha(fechaNacimientoMascota,FORMATO_FECHA, SE_DEBE_INGRESAR_LA_FECHA_DE_NACIMIENTO_EN_FORMATO_VALIDO);
-        
+
         this.nombrePropietario = nombrePropietario;
         this.telefonoPropietario = telefonoPropietario;
         this.nombreMascota = nombreMascota;
