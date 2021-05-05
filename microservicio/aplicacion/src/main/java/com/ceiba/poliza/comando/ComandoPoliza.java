@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@SuppressWarnings("java:S1068")
 @Getter
 @Setter
 @AllArgsConstructor

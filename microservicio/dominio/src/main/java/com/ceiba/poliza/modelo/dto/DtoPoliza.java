@@ -6,6 +6,7 @@ import lombok.Getter;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@SuppressWarnings("java:S1068")
 @Getter
 @AllArgsConstructor
 public class DtoPoliza {
