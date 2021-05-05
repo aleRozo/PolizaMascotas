@@ -63,7 +63,6 @@ public class PolizaTestDataBuilder {
 
     public Poliza build() {
         return new Poliza(
-                id,
                 nombrePropietario,
                 telefonoPropietario,
                 nombreMascota,

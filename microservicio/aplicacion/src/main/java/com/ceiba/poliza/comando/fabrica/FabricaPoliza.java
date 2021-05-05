@@ -9,7 +9,6 @@ public class FabricaPoliza {
 
     public Poliza crear(ComandoPoliza comandoPoliza) {
         return new Poliza(
-                comandoPoliza.getId(),
                 comandoPoliza.getNombrePropietario(),
                 comandoPoliza.getTelefonoPropietario(),
                 comandoPoliza.getNombreMascota(),
