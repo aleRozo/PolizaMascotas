@@ -1,7 +1,5 @@
 package com.ceiba.usuario.servicio.testdatabuilder;
 
-import com.ceiba.usuario.comando.ComandoUsuario;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
 
