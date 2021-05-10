@@ -13,9 +13,9 @@ public class ServicioEliminarPoliza {
         this.repositorioPoliza = repositorioPoliza;
     }
 
-    public void ejecutar(Long id) {
+    public Long ejecutar(Long id) {
         validarExistenciaPrevia(id);
-        this.repositorioPoliza.eliminar(id);
+        return this.repositorioPoliza.eliminar(id);
     }
 
     private void validarExistenciaPrevia(Long id) {

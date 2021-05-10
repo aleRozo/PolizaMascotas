@@ -29,8 +29,8 @@ public class ConsultaControladorPolizaTest {
         mocMvc.perform(get("/polizas")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].nombrePropietario", is("Nombre Prueba")));
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].nombreMascota", is("Nombre Perrito")));
     }
 
 

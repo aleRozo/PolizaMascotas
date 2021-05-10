@@ -1,4 +1,4 @@
-package com.ceiba.poliza.servicio.testdatabuilder;
+package com.ceiba.poliza.testdatabuilder;
 
 import com.ceiba.poliza.modelo.entidad.Poliza;
 

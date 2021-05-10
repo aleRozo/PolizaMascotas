@@ -13,8 +13,9 @@ public interface RepositorioPoliza {
     /**
      * Permite eliminar una poliza
      * @param id
+     * @return
      */
-    void eliminar(Long id);
+    Long eliminar(Long id);
 
     /**
      * Permite validar si existe una poliza a nombre de un propietario y una mascota

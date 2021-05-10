@@ -17,7 +17,7 @@ public class RepositorioPolizaMysql implements RepositorioPoliza {
 
     @SqlStatement(namespace="poliza", value="eliminar")
     private static String sqlEliminar;
-//
+
     @SqlStatement(namespace="poliza", value="existe")
     private static String sqlExiste;
 
@@ -34,11 +34,11 @@ public class RepositorioPolizaMysql implements RepositorioPoliza {
     }
 
     @Override
-    public void eliminar(Long id) {
+    public Long eliminar(Long id) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
-
         this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
+        return id;
     }
 
     @Override

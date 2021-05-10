@@ -31,7 +31,7 @@ public class ComandoControladorPoliza {
 
     @DeleteMapping(value="/{id}")
 	@ApiOperation("Eliminar Poliza")
-	public void eliminar(@PathVariable Long id) {
-        manejadorEliminarPoliza.ejecutar(id);
+	public ComandoRespuesta<Long> eliminar(@PathVariable Long id) {
+        return manejadorEliminarPoliza.ejecutar(id);
 	}
 }

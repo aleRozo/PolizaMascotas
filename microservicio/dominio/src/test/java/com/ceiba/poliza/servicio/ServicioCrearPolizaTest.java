@@ -6,69 +6,17 @@ import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.poliza.modelo.entidad.Poliza;
 import com.ceiba.poliza.puerto.repositorio.RepositorioPoliza;
-import com.ceiba.poliza.servicio.testdatabuilder.PolizaTestDataBuilder;
+import com.ceiba.poliza.testdatabuilder.PolizaTestDataBuilder;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 
 public class ServicioCrearPolizaTest {
 
-    @Test
-    public void validarNombrePropietarioObligatorioTest() {
-        PolizaTestDataBuilder polizaTestDataBuilder = new PolizaTestDataBuilder().conNombrePropietario("");
-
-        BasePrueba.assertThrows(() -> polizaTestDataBuilder.build(), ExcepcionValorObligatorio.class, "Se debe ingresar el nombre del propietario");
-    }
-
-    @Test
-    public void validarTelefonoPropietarioObligatorioTest() {
-        PolizaTestDataBuilder polizaTestDataBuilder = new PolizaTestDataBuilder().conTelefonoPropietario(null);
-
-        BasePrueba.assertThrows(() -> polizaTestDataBuilder.build(), ExcepcionValorObligatorio.class, "Se debe ingresar el telefono del propietario");
-    }
-
-    @Test
-    public void validarNombreMascotaObligatorioTest() {
-        PolizaTestDataBuilder polizaTestDataBuilder = new PolizaTestDataBuilder().conNombreMascota(" ");
-
-        BasePrueba.assertThrows(() -> polizaTestDataBuilder.build(), ExcepcionValorObligatorio.class, "Se debe ingresar el nombre de la mascota");
-    }
-
-    @Test
-    public void validarTipoMascotaObligatorioTest() {
-        PolizaTestDataBuilder polizaTestDataBuilder = new PolizaTestDataBuilder().conTipoMascota(null);
-
-        BasePrueba.assertThrows(() -> polizaTestDataBuilder.build(), ExcepcionValorObligatorio.class, "Se debe ingresar el tipo de mascota");
-    }
-
-    @Test
-    public void validarFechaNacimientoMascotaObligatorioTest() {
-        PolizaTestDataBuilder polizaTestDataBuilder = new PolizaTestDataBuilder().conFechaNacimientoMascota(null);
-
-        BasePrueba.assertThrows(() -> polizaTestDataBuilder.build(), ExcepcionValorObligatorio.class, "Se debe ingresar la fecha de nacimiento de la mascota");
-    }
-
-    @Test
-    public void validarPesoMascotaObligatorioTest() {
-        PolizaTestDataBuilder polizaTestDataBuilder = new PolizaTestDataBuilder().conPesoMascota(null);
-
-        BasePrueba.assertThrows(() -> polizaTestDataBuilder.build(), ExcepcionValorObligatorio.class, "Se debe ingresar el peso de la mascota");
-    }
-
-    @Test
-    public void validarTelefonoPropietarioNumericoTest() {
-        PolizaTestDataBuilder polizaTestDataBuilder = new PolizaTestDataBuilder().conTelefonoPropietario("abcd");
-
-        BasePrueba.assertThrows(() -> polizaTestDataBuilder.build(), ExcepcionValorInvalido.class, "Se debe ingresar solo valores numericos en el telefono del propietario");
-    }
-
-    @Test
-    public void validarFechaNacimientoMascotaFormatoValidoTest() {
-        PolizaTestDataBuilder polizaTestDataBuilder = new PolizaTestDataBuilder().conFechaNacimientoMascota("12/12/2021");
-
-        BasePrueba.assertThrows(() -> polizaTestDataBuilder.build(), ExcepcionValorInvalido.class, "Se debe ingresar la fecha de nacimiento en formato dd-mm-yyyy");
-    }
 
     @Test
     public void validarPolizaExistenciaPreviaTest() {
@@ -78,6 +26,8 @@ public class ServicioCrearPolizaTest {
         ServicioCrearPoliza servicioCrearPoliza = new ServicioCrearPoliza(repositorioPoliza);
 
         BasePrueba.assertThrows(() -> servicioCrearPoliza.ejecutar(poliza), ExcepcionDuplicidad.class,"La poliza ya existe en el sistema");
+        Mockito.verify(repositorioPoliza, Mockito.times(0)).crear(Mockito.any());
+
     }
 
     @Test
@@ -88,6 +38,8 @@ public class ServicioCrearPolizaTest {
         ServicioCrearPoliza servicioCrearPoliza = new ServicioCrearPoliza(repositorioPoliza);
 
         Assert.assertNotNull(servicioCrearPoliza.ejecutar(poliza));
+        Mockito.verify(repositorioPoliza, Mockito.times(1)).crear(Mockito.any());
+
     }
 
     @Test
@@ -99,6 +51,8 @@ public class ServicioCrearPolizaTest {
         ServicioCrearPoliza servicioCrearPoliza = new ServicioCrearPoliza(repositorioPoliza);
 
         Assert.assertNotNull(servicioCrearPoliza.ejecutar(poliza));
+        Mockito.verify(repositorioPoliza, Mockito.times(1)).crear(Mockito.any());
+
     }
 
     @Test
@@ -110,6 +64,41 @@ public class ServicioCrearPolizaTest {
         ServicioCrearPoliza servicioCrearPoliza = new ServicioCrearPoliza(repositorioPoliza);
 
         BasePrueba.assertThrows(() -> servicioCrearPoliza.ejecutar(poliza), ExcepcionValorInvalido.class,"Se debe ingresar una fecha de nacimiento valida en el calendario");
+        Mockito.verify(repositorioPoliza, Mockito.times(0)).crear(Mockito.any());
+
     }
 
+    @Test
+    public void validarCrearPolizaFechaTerminacionSabadoTest() {
+        Poliza poliza = Mockito.mock(Poliza.class);
+        Mockito.when(poliza.getValorPoliza()).thenReturn(BigDecimal.valueOf(20000.0));
+        Mockito.when(poliza.getFechaNacimientoMascota()).thenReturn("10-12-2020");
+        Mockito.when(poliza.getFechaInicio()).thenReturn(LocalDateTime.of(2021,5,7,10,10,10));
+
+        RepositorioPoliza repositorioPoliza = Mockito.mock(RepositorioPoliza.class);
+        Mockito.when(repositorioPoliza.existe(Mockito.anyString(),Mockito.anyString())).thenReturn(false);
+        ServicioCrearPoliza servicioCrearPoliza = new ServicioCrearPoliza(repositorioPoliza);
+
+        Assert.assertNotNull(servicioCrearPoliza.ejecutar(poliza));
+        Mockito.verify(poliza, Mockito.times(1)).setFechaTerminacion(Mockito.any());
+        Mockito.verify(repositorioPoliza, Mockito.times(1)).crear(Mockito.any());
+
+    }
+
+    @Test
+    public void validarCrearPolizaFechaTerminacionDomingoTest() {
+        Poliza poliza = Mockito.mock(Poliza.class);
+        Mockito.when(poliza.getValorPoliza()).thenReturn(BigDecimal.valueOf(20000.0));
+        Mockito.when(poliza.getFechaNacimientoMascota()).thenReturn("10-12-2020");
+        Mockito.when(poliza.getFechaInicio()).thenReturn(LocalDateTime.of(2021,5,8,10,10,10));
+
+        RepositorioPoliza repositorioPoliza = Mockito.mock(RepositorioPoliza.class);
+        Mockito.when(repositorioPoliza.existe(Mockito.anyString(),Mockito.anyString())).thenReturn(false);
+        ServicioCrearPoliza servicioCrearPoliza = new ServicioCrearPoliza(repositorioPoliza);
+
+        Assert.assertNotNull(servicioCrearPoliza.ejecutar(poliza));
+        Mockito.verify(poliza, Mockito.times(1)).setFechaTerminacion(Mockito.any());
+        Mockito.verify(repositorioPoliza, Mockito.times(1)).crear(Mockito.any());
+
+    }
 }

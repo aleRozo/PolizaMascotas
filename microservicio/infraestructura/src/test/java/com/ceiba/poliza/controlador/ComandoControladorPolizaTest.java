@@ -2,8 +2,11 @@ package com.ceiba.poliza.controlador;
 
 import com.ceiba.ApplicationMock;
 import com.ceiba.poliza.comando.ComandoPoliza;
+import com.ceiba.poliza.comando.fabrica.FabricaPoliza;
+import com.ceiba.poliza.puerto.repositorio.RepositorioPoliza;
 import com.ceiba.poliza.servicio.testdatabuilder.ComandoPolizaTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,40 +31,51 @@ public class ComandoControladorPolizaTest {
     @Autowired
     private MockMvc mocMvc;
 
+    @Autowired
+    RepositorioPoliza repositorioPoliza;
+
+    @Autowired
+    FabricaPoliza fabricaPoliza;
+
     @Test
     public void crear() throws Exception{
-        // arrange
+
         ComandoPoliza poliza = new ComandoPolizaTestDataBuilder().build();
 
-        // act - assert
         mocMvc.perform(post("/polizas")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(poliza)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 2}"));
+                .andExpect(content().json("{'valor': 3}"));
+        Assert.assertTrue(repositorioPoliza.existeId(3L));
     }
 
     @Test
     public void eliminar() throws Exception {
-        // arrange
-        Long id = 2L;
+        Long id = 1L;
 
-        // act - assert
         mocMvc.perform(delete("/polizas/{id}",id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(content().json("{'valor': 1}"));
+
+        Assert.assertFalse(repositorioPoliza.existe("Nombre Prueba Eliminar","Nombre Perrito"));
     }
 
     @Test
     public void eliminarPolizaNoExistente() throws Exception {
-        // arrange
         Long id = 20L;
 
-        // act - assert
         mocMvc.perform(delete("/polizas/{id}",id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(content().json("{\n" +
+                        "    \"nombreExcepcion\": \"ExcepcionSinDatos\",\n" +
+                        "    \"mensaje\": \"La poliza que intenta eliminar no existe en el sistema\"\n" +
+                        "}"));
+
+        Assert.assertFalse(repositorioPoliza.existeId(id));
     }
 }
